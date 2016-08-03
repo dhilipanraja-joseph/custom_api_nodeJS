@@ -6,6 +6,7 @@ const age = require('./age.js');
 const analyzer = require('./analyzer.js');
 const generator = require('./generator.js');
 const magicball = require('./magicball.js');
+const spellcheck = require('./spell_checker.js');
 
 let server = http.createServer((req,res)=>{
 
@@ -45,8 +46,12 @@ let server = http.createServer((req,res)=>{
                     console.log('magicball');
                     res.end('\n');break;
 
+      case 'spellcheck' : res.write(spellcheck(urlData));
+                    console.log('spellcheck');
+                    res.end('\n');break;
+
       default     : res.statusCode = 404;
-                    res.end('Use routes /math, /age, /analyzer, /magicball, /gene .eg /math/2+2\n');
+                    res.end('Use routes /spellcheck, /math, /age, /analyzer, /magicball, /gene .eg /math/2+2\n');
                     break;
   }
 
